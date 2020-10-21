@@ -74,7 +74,15 @@
         <script>
 
             $.ajax({
-                url: "source/estilo.css",
+                url: "example.html",
+                dataType: "text",
+                success: function (data) {
+                    $("#code_html code").html(data);
+                }
+            });
+            
+            $.ajax({
+                url: "../assets/css/main.css",
                 dataType: "text",
                 success: function (data) {
                     $("#code_css code").html(data);
