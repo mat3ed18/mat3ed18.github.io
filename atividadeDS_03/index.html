@@ -491,20 +491,22 @@
         <script type="text/javascript" src="source/jquery-dateformat.min.js"></script>
         <script type="text/javascript" src="source/script.js"></script>
         <script>
-            
-        function retornar_conteudo (arquivo) {
-            $.ajax({
-            url: arquivo,
+        
+        $.ajax({
+            url: "source/estilo.css",
             dataType: "text",
             success: function (data) {
-                return (data);
+                $("#code_css code").html(data);
             }
         });
-        }
         
-        $("#code_css code").html(retornar_conteudo("source/estilo.css"));
-        $("#code_js code").html(retornar_conteudo("source/script.css"));
-        
+        $.ajax({
+            url: "source/script.js",
+            dataType: "text",
+            success: function (data) {
+                $("#code_js code").html(data);
+            }
+        });
         
         </script>
     </body>
