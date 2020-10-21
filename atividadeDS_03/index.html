@@ -162,8 +162,7 @@
         &lt;script src="../assets/js/main.js"&gt;&lt;/script&gt;
         &lt;script src="source/script.js"&gt;&lt;/script&gt;
     &lt;/body&gt;
-&lt;/html&gt;                           
-                        </code>
+&lt;/html&gt;</code>
                     </pre>
                     <h4>CSS</h4>
                     <pre id="code_css">
@@ -175,7 +174,163 @@
                     </pre>
                     <h4>PHP</h4>
                     <pre id="code_php">
-                        <code></code>
+                        <code>&lt;?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', 'On');
+    header('Access-Control-Allow-Origin: *');
+    date_default_timezone_set("America/Sao_Paulo");
+    $con = new mysqli("*****", "*****", "*****", "*****");
+    $con->query("SET NAMES 'utf8'");
+    $con->query("SET character_set_connection=utf8");
+    $con->query("SET character_set_client=utf8");
+    $con->query("SET character_set_results=utf8");
+
+    function retorno($msg) {
+        $retorno = array();
+        $retorno["mensagem"] = $msg;
+        return json_encode($retorno);
+    }
+
+    function CadastrarArquivo($nome, $tipo, $link, $tamanho) {
+        $stmt = $GLOBALS["con"]->prepare("SELECT CadastrarArquivo(?,?,?,?) AS mensagem");
+        $cdata = file_get_contents($link);
+        $ctamanho = round((($tamanho / 1024) / 1024), 2);
+        echo $GLOBALS["con"]->error;
+        $stmt->bind_param("ssdb", $nome, $tipo, $ctamanho, $cdata);
+        $stmt->send_long_data(3, $cdata);
+        $stmt->execute();
+        if ($stmt) {
+            $stmt->bind_result($alert);
+            while ($stmt->fetch()) {
+               return $alert;
+            }
+        } else {
+            return "Erro ao CADASTRAR!";
+        }
+    }
+
+    function CadastrarUsuario($nome, $profissao, $email, $cidade, $uf, $idade, $dt_nasc, $telefone, $foto) {
+        $foto_id = null;
+        $stmt = $GLOBALS["con"]->prepare("SELECT IDArquivo(?) AS foto_id");
+        $stmt->bind_param("s", $foto);
+        $stmt->execute();
+        if ($stmt) {
+            $stmt->bind_result($sum);
+            while ($stmt->fetch()) {
+               $foto_id = $sum;
+            }
+        } else {
+            $foto_id = null;
+        }
+        $stmt2 = $GLOBALS["con"]->prepare("SELECT CadastrarUsuario(?, ?, ?, ?, ?, ?, ?, ?, ?) AS mensagem");
+        $data_nasc = @date("Y-m-d", strtotime($dt_nasc));
+        $stmt2->bind_param("sssssissi", $nome, $profissao, $email, $cidade, $uf, $idade, $data_nasc, $telefone, $foto_id);
+        $stmt2->execute();
+        echo $GLOBALS["con"]->error;
+        if ($stmt2) {
+            $stmt2->bind_result($alert);
+            while ($stmt2->fetch()) {
+               return $alert;
+            }
+        } else {
+            return mysqli_error($GLOBALS["con"]);
+        }
+    }
+
+    function CadastrarUsuarioSFT($nome, $profissao, $email, $cidade, $uf, $idade, $dt_nasc, $telefone) {
+        $stmt = $GLOBALS["con"]->prepare("SELECT CadastrarUsuario(?, ?, ?, ?, ?, ?, ?, ?, ?) AS mensagem");
+        $data_nasc = @date("Y-m-d", strtotime($dt_nasc));
+        $foto_id = null;
+        $stmt->bind_param("sssssissi", $nome, $profissao, $email, $cidade, $uf, $idade, $data_nasc, $telefone, $foto_id);
+        $stmt->execute();
+        if ($stmt) {
+            $stmt->bind_result($alert);
+            while ($stmt->fetch()) {
+               return $alert;
+            }
+        } else {
+            return mysqli_error($GLOBALS["con"]);
+        }
+    }
+
+    if (isset($_FILES["imagem"])) {
+        $cnome = strtolower(str_replace(" ", "-", $_POST["nome"]) . "." . explode("/", $_FILES["imagem"]["type"])[1]);
+        echo retorno(CadastrarArquivo($cnome, $_FILES["imagem"]["type"], $_FILES["imagem"]["tmp_name"], $_FILES["imagem"]["size"]) . " - " . CadastrarUsuario($_POST["nome"], $_POST["profissao"], $_POST["email"], $_POST["cidade"], $_POST["uf"], $_POST["idade"], $_POST["dt_nascimento"], $_POST["telefone"], $cnome));
+    } else {
+        echo retorno(CadastrarUsuarioSFT($_POST["nome"], $_POST["profissao"], $_POST["email"], $_POST["cidade"], $_POST["uf"], $_POST["idade"], $_POST["dt_nascimento"], $_POST["telefone"]));
+    }
+
+    $res = $con->query("SELECT u.*, a.tipo, TO_BASE64(a.conteudo) AS conteudo FROM usuario u LEFT OUTER JOIN arquivo a ON (u.foto_id = a.id) WHERE a.id IS NULL OR a.id = u.foto_id;");
+    if ($res) {
+        $users = array();
+        while ($user = $res->fetch_array(MYSQLI_ASSOC)) {
+            $user["dt_nascimento"] = @date("d/m/Y", strtotime($user["dt_nascimento"]));
+            array_push($users, $user);
+        }
+        echo json_encode($users);
+    } else {
+        echo mysqli_error($con);
+    }
+
+    function ExcluirUsuario($usuario_id, $foto_id) {
+        $stmt = $GLOBALS["con"]->prepare("SELECT ExcluirUsuario(?) AS mensagem");
+        $stmt->bind_param("i", $usuario_id);
+        $stmt->execute();
+        
+        $confU = "";
+
+        if ($stmt) {
+            $stmt->bind_result($alert);
+            while ($stmt->fetch()) {
+               $confU = $alert;
+            }
+        } else {
+            $confU = "Erro ao EXCLUIR!";
+        }
+        
+        $stmt = $GLOBALS["con"]->prepare("SELECT ExcluirArquivo(?) AS mensagem");
+        $stmt->bind_param("i", $foto_id);
+        $stmt->execute();
+        
+        $confA = "";
+
+        if ($stmt) {
+            $stmt->bind_result($alert);
+            while ($stmt->fetch()) {
+               $confA = $alert;
+            }
+        } else {
+            $confA = "Erro ao EXCLUIR!";
+        }
+        
+        return $confU . " - " . $confA;
+    }
+
+    function ExcluirUsuarioSFT($usuario_id) {
+        $stmt = $GLOBALS["con"]->prepare("SELECT ExcluirUsuario(?) AS mensagem");
+        $stmt->bind_param("i", $usuario_id);
+        $stmt->execute();
+
+        if ($stmt) {
+            $stmt->bind_result($alert);
+            while ($stmt->fetch()) {
+               return $alert;
+            }
+        } else {
+            return "Erro ao EXCLUIR!";
+        }
+    }
+
+    $retorno = array();
+
+    if (isset($_POST["fotoId"])) {
+        $retorno["mensagem"] = ExcluirUsuario($_POST["usuarioId"], $_POST["fotoId"]);
+    } else {
+        $retorno["mensagem"] = ExcluirUsuarioSFT($_POST["usuarioId"]);
+    }
+
+    echo json_encode($retorno);
+?&gt;</code>
                     </pre>
                     <h4>RESULTADO: </h4>
                     <section>
@@ -213,35 +368,6 @@
                     $("#code_js code").html(data);
                 }
             });
-            
-            $.ajax({
-                url: "https://mpsilva.000webhostapp.com/webservice/salva.php #code_php",
-                dataType: "text",
-                success: function (data) {
-                    $("#code_php code").load(data);
-                }
-            });
-            
-//            $.ajax({
-//                url: "https://mpsilva.000webhostapp.com/webservice/listar.php",
-//                dataType: "text",
-//                success: function (data) {
-//                    $("#code_php code").html($("#code_php code").html() + "\n" + data);
-//                }
-//            });
-//            
-//            $.ajax({
-//                url: "https://mpsilva.000webhostapp.com/webservice/excluir.php",
-//                dataType: "text",
-//                success: function (data) {
-//                    $("#code_php code").html($("#code_php code").html() + "\n" + data);
-//                }
-//            });
-            
-            
-            
-            
-
         </script>
     </body>
 </html>
