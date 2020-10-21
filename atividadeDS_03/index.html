@@ -432,65 +432,33 @@
 
                     <h4>HTML</h4>
 
-                    <pre>
+                    <pre id="code_html">
                         <code>
-                            i = 0;
-
-                            while (!deck.isInOrder()) {
-                            print 'Iteration ' + i;
-                            deck.shuffle();
-                            i++;
-                            }
-
-                            print 'It took ' + i + ' iterations to sort the deck.';
+                            
                         </code>
                     </pre>
 
                     <h4>CSS</h4>
 
-                    <pre>
+                    <pre id="code_css">
                         <code>
-                            i = 0;
-
-                            while (!deck.isInOrder()) {
-                            print 'Iteration ' + i;
-                            deck.shuffle();
-                            i++;
-                            }
-
-                            print 'It took ' + i + ' iterations to sort the deck.';
+                            
                         </code>
                     </pre>
 
                     <h4>JS</h4>
 
-                    <pre>
+                    <pre id="code_js">
                         <code>
-                            i = 0;
-
-                            while (!deck.isInOrder()) {
-                            print 'Iteration ' + i;
-                            deck.shuffle();
-                            i++;
-                            }
-
-                            print 'It took ' + i + ' iterations to sort the deck.';
+                            
                         </code>
                     </pre>
 
                     <h4>PHP</h4>
 
-                    <pre>
+                    <pre id="code_php">
                         <code>
-                            i = 0;
-
-                            while (!deck.isInOrder()) {
-                            print 'Iteration ' + i;
-                            deck.shuffle();
-                            i++;
-                            }
-
-                            print 'It took ' + i + ' iterations to sort the deck.';
+                            
                         </code>
                     </pre>
 
@@ -534,7 +502,10 @@
         });
         }
         
-        alert(retornar_conteudo("source/script.js"));
+        $("#code_css code").html(retornar_conteudo("source/estilo.css"));
+        $("#code_js code").html(retornar_conteudo("source/script.css"));
+        
+        
         </script>
     </body>
 </html>
