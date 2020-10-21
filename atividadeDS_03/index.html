@@ -77,7 +77,7 @@
                 url: "example.html",
                 dataType: "text",
                 success: function (data) {
-                    $("#code_html code").html(data);
+                    $("#code_html code").html(data.replace("<", "&lt;").replace(">", "&gt;"));
                 }
             });
             
