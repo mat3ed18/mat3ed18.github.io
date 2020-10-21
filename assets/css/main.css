@@ -1,5 +1,6 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic");
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -1805,6 +1806,9 @@ label {
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="date"],
+input[type="file"],
+input[type="number"],
 select,
 textarea {
     -moz-appearance: none;
@@ -1825,6 +1829,9 @@ textarea {
 input[type="text"]:invalid,
 input[type="password"]:invalid,
 input[type="email"]:invalid,
+input[type="date"]:invalid,
+input[type="file"]:invalid,
+input[type="number"]:invalid,
 select:invalid,
 textarea:invalid {
     box-shadow: none;
@@ -1833,6 +1840,9 @@ textarea:invalid {
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
+input[type="date"]:focus,
+input[type="file"]:focus,
+input[type="number"]:focus,
 select:focus,
 textarea:focus {
     border-color: #49bf9d;
@@ -1864,6 +1874,9 @@ select::-ms-expand {
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="date"],
+input[type="file"],
+input[type="number"],
 select {
     height: 2.75em;
 }
@@ -2428,6 +2441,7 @@ table.alt tfoot {
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
+label.primary, 
 .button {
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -2508,6 +2522,7 @@ input[type="button"].large,
 }
 
 input[type="submit"].primary,
+label.primary,
 input[type="reset"].primary,
 input[type="button"].primary,
 .button.primary {
@@ -2517,6 +2532,7 @@ input[type="button"].primary,
 }
 
 input[type="submit"].primary:hover,
+label.primary:hover,
 input[type="reset"].primary:hover,
 input[type="button"].primary:hover,
 .button.primary:hover {
@@ -2525,6 +2541,7 @@ input[type="button"].primary:hover,
 }
 
 input[type="submit"].primary:active,
+label.primary:active,
 input[type="reset"].primary:active,
 input[type="button"].primary:active,
 .button.primary:active {
@@ -3209,4 +3226,16 @@ body.is-touch .poptrox-popup .closer {
         padding-left: 0;
     }
 
+}
+
+#foto {
+    display: none;
+}
+
+.foto_btn i {
+    margin-right: 0.5%;
+}
+
+label.primary {
+    width: 100%;
 }
