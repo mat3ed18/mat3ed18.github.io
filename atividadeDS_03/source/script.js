@@ -6,8 +6,8 @@ $(function ($) {
                 dataType: 'json',
                 success: function (retorno) {
                     alerta(retorno.mensagem, "success");
-                    $("label[for=foto]").css({backgroundColor: "white"});
-                    $("input[type=text], input[type=number], input[type=date], select").css({backgroundColor: "white"});
+                    $("label[for=foto]").css({ backgroundColor: "#f7f7f7" });
+                    $("input[type=text], input[type=number], input[type=date], select").css({ backgroundColor: "#f7f7f7" });
                     $("#form select[name=uf]").html("<option value=\"-\">-</option><option value=\"AC\">AC</option><option value=\"AL\">AL</option><option value=\"AP\">AP</option><option value=\"AM\">AM</option><option value=\"BA\">BA</option><option value=\"CE\">CE</option><option value=\"DF\">DF</option><option value=\"ES\">ES</option><option value=\"GO\">GO</option><option value=\"MA\">MA</option><option value=\"MT\">MT</option><option value=\"MS\">MS</option><option value=\"MG\">MG</option><option value=\"PA\">PA</option><option value=\"PB\">PB</option><option value=\"PR\">PR</option><option value=\"PE\">PE</option><option value=\"PI\">PI</option><option value=\"RJ\">RJ</option><option value=\"RN\">RN</option><option value=\"RS\">RS</option><option value=\"RO\">RO</option><option value=\"RR\">RR</option><option value=\"SC\">SC</option><option value=\"SP\">SP</option><option value=\"SE\">SE</option><option value=\"TO\">TO</option>");
                     $(".form_tit").html("Cadastre-se");
                     $(".form_sub").html("Seja um membro da nossa equipe e colabore para a nosso crescimento institucional");
@@ -29,7 +29,6 @@ $(function ($) {
 
 $(window).on("load", function () {
     // window.location.href="https://mpsilva.000webhostapp.com/webservice/listar.php";
-    alerta("Seja BEM-VINDO ao INOVA CPS", "success");
     $("input[name=telefone]").mask("(00) 00000-0000");
     refresh_member_list();
 });
@@ -42,7 +41,7 @@ function refresh_member_list() {
             for (var i = 0; i < usuarios.length; i++) {
                 var data = "img/user.png";
                 if (usuarios[i].conteudo != null) data = "data:" + usuarios[i].tipo + ";base64," + usuarios[i].conteudo;
-                $("#lista_pessoas").append("<tr><td><div style='float: left; width: 10%; margin-right: 3%'><img src='" + data + "' style='width: 100%; border-radius: 50%'></div><div style='width: 80%'>" + usuarios[i].nome + "</div></td><td>" + usuarios[i].profissao + "</td><td>" + usuarios[i].email + "</td><td>" + usuarios[i].cidade + " (" + usuarios[i].uf + ")</td><td>" + usuarios[i].idade + "</td><td>" + usuarios[i].telefone + "</td></tr>");
+                $("#lista_pessoas").append("<tr><td><div style='float: left; width: 10%; margin-right: 3%'><img src='" + data + "' style='width: 100%; border-radius: 50%'></div><div style='width: 80%'>#" + usuarios[i].id + " " + usuarios[i].nome + "</div></td><td>" + usuarios[i].profissao + "</td><td>" + usuarios[i].email + "</td><td>" + usuarios[i].cidade + " (" + usuarios[i].uf + ")</td><td>" + usuarios[i].idade + "</td><td>" + usuarios[i].telefone + "</td></tr>");
             }
         } else {
             $("#lista_pessoas").html("<h5 id=\"usersNull\">NÃO HÁ MEMBROS CADASTRADOS NO MOMENTO</h5>");
