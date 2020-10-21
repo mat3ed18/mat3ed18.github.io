@@ -218,25 +218,25 @@
                 url: "https://mpsilva.000webhostapp.com/webservice/salva.php",
                 dataType: "text",
                 success: function (data) {
-                    $("#code_php code").html(data);
+                    $("#code_php code").load(data);
                 }
             });
             
-            $.ajax({
-                url: "https://mpsilva.000webhostapp.com/webservice/listar.php",
-                dataType: "text",
-                success: function (data) {
-                    $("#code_php code").html($("#code_php code").html() + "\n" + data);
-                }
-            });
-            
-            $.ajax({
-                url: "https://mpsilva.000webhostapp.com/webservice/excluir.php",
-                dataType: "text",
-                success: function (data) {
-                    $("#code_php code").html($("#code_php code").html() + "\n" + data);
-                }
-            });
+//            $.ajax({
+//                url: "https://mpsilva.000webhostapp.com/webservice/listar.php",
+//                dataType: "text",
+//                success: function (data) {
+//                    $("#code_php code").html($("#code_php code").html() + "\n" + data);
+//                }
+//            });
+//            
+//            $.ajax({
+//                url: "https://mpsilva.000webhostapp.com/webservice/excluir.php",
+//                dataType: "text",
+//                success: function (data) {
+//                    $("#code_php code").html($("#code_php code").html() + "\n" + data);
+//                }
+//            });
             
             
             
