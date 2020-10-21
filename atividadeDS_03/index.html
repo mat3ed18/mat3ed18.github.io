@@ -523,14 +523,18 @@
         <script type="text/javascript" src="source/jquery-dateformat.min.js"></script>
         <script type="text/javascript" src="source/script.js"></script>
         <script>
-
+            
+        function retornar_conteudo (arquivo) {
             $.ajax({
-                url: "source/script.js",
-                dataType: "text",
-                success: function (cssText) {
-                    alert(cssText);
-                }
-            });
+            url: arquivo,
+            dataType: "text",
+            success: function (data) {
+                return (data);
+            }
+        });
+        }
+        
+        alert(retornar_conteudo("source/script.js"));
         </script>
     </body>
 </html>
