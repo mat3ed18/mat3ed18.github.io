@@ -38,7 +38,132 @@
                 <section>
                     <h4>HTML</h4>
                     <pre id="code_html">
-                        <code></code>
+                        <code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;teste&lt;/title&gt;
+        &lt;meta charset="utf-8" /&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" /&gt;
+        &lt;link rel="stylesheet" href="../assets/css/main.css" /&gt;
+        &lt;style&gt;
+            #frame {
+                width: 100%;
+                height: 1000px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body class="is-preload"&gt;
+        &lt;div id="main"&gt;
+            &lt;section id="one"&gt;
+                &lt;h2&gt;FORMULÁRIO&lt;/h2&gt;
+                &lt;section&gt;
+                    &lt;h4&gt;Insira as informações e clique em ENVIAR&lt;/h4&gt;
+                    &lt;form action="https://mpsilva.000webhostapp.com/webservice/salva.php" method="post" enctype="multipart/form-data" id="form"&gt;
+                        &lt;div class="row gtr-uniform gtr-50"&gt;
+                            &lt;div class="col-12 col-12-xsmall"&gt;
+                                &lt;input type="text" name="nome" id="demo-name" value="" placeholder="NOME" required /&gt;
+                            &lt;/div&gt;
+                            &lt;div class="col-12 col-12-xsmall"&gt;
+                                &lt;input type="text" name="profissao" id="demo-name" value="" placeholder="PROFISSÃO" required /&gt;
+                            &lt;/div&gt;
+                            &lt;div class="col-12 col-12-xsmall"&gt;
+                                &lt;input type="text" name="email" id="demo-name" value="" placeholder="EMAIL" required /&gt;
+                            &lt;/div&gt;
+                            &lt;div class="col-12 col-12-xsmall"&gt;
+                                &lt;input type="text" name="cidade" id="demo-name" value="" placeholder="CIDADE" required /&gt;
+                            &lt;/div&gt;
+                            &lt;div class="col-12"&gt;
+                                &lt;select name="uf" id="demo-category" title="Selecione o estado" required &gt;
+                                    &lt;option value="-"&gt;-&lt;/option&gt;
+                                    &lt;option value="AC"&gt;AC&lt;/option&gt;
+                                    &lt;option value="AL"&gt;AL&lt;/option&gt;
+                                    &lt;option value="AP"&gt;AP&lt;/option&gt;
+                                    &lt;option value="AM"&gt;AM&lt;/option&gt;
+                                    &lt;option value="BA"&gt;BA&lt;/option&gt;
+                                    &lt;option value="CE"&gt;CE&lt;/option&gt;
+                                    &lt;option value="DF"&gt;DF&lt;/option&gt;
+                                    &lt;option value="ES"&gt;ES&lt;/option&gt;
+                                    &lt;option value="GO"&gt;GO&lt;/option&gt;
+                                    &lt;option value="MA"&gt;MA&lt;/option&gt;
+                                    &lt;option value="MT"&gt;MT&lt;/option&gt;
+                                    &lt;option value="MS"&gt;MS&lt;/option&gt;
+                                    &lt;option value="MG"&gt;MG&lt;/option&gt;
+                                    &lt;option value="PA"&gt;PA&lt;/option&gt;
+                                    &lt;option value="PB"&gt;PB&lt;/option&gt;
+                                    &lt;option value="PR"&gt;PR&lt;/option&gt;
+                                    &lt;option value="PE"&gt;PE&lt;/option&gt;
+                                    &lt;option value="PI"&gt;PI&lt;/option&gt;
+                                    &lt;option value="RJ"&gt;RJ&lt;/option&gt;
+                                    &lt;option value="RN"&gt;RN&lt;/option&gt;
+                                    &lt;option value="RS"&gt;RS&lt;/option&gt;
+                                    &lt;option value="RO"&gt;RO&lt;/option&gt;
+                                    &lt;option value="RR"&gt;RR&lt;/option&gt;
+                                    &lt;option value="SC"&gt;SC&lt;/option&gt;
+                                    &lt;option value="SP"&gt;SP&lt;/option&gt;
+                                    &lt;option value="SE"&gt;SE&lt;/option&gt;
+                                    &lt;option value="TO"&gt;TO&lt;/option&gt;
+                                &lt;/select&gt;
+                            &lt;/div&gt;
+                            &lt;div class="col-12 col-12-xsmall"&gt;
+                                &lt;input type="number" name="idade" id="demo-name" value="" placeholder="IDADE" required /&gt;
+                            &lt;/div&gt;
+                            &lt;div class="col-12 col-12-xsmall"&gt;
+                                &lt;input type="date" name="dt_nascimento" id="demo-name" value="" placeholder="DATA DE NASCIMENTO" required /&gt;
+                            &lt;/div&gt;
+                            &lt;div class="col-12 col-12-xsmall"&gt;
+                                &lt;input type="text" name="telefone" id="demo-name" value="" placeholder="TELEFONE" required /&gt;
+                            &lt;/div&gt;
+                            &lt;div class="col-12 col-12-xsmall"&gt;
+                                &lt;label for="foto" class="btn btn-light shadow foto_btn primary" id="demo-name"&gt;&lt;i class="fa fa-file-image-o" aria-hidden="true"&gt;&lt;/i&gt; Selecione a sua foto&lt;/label&gt;
+                                &lt;input type="file" id="foto" name="imagem" class="form-control col-12" style=""&gt;
+                                &lt;input type="hidden" name="foto_id" class="form-control col-12"&gt;
+                                &lt;input type="hidden" name="user_id" class="form-control col-12"&gt;
+                            &lt;/div&gt;
+                            &lt;div class="col-12"&gt;
+                                &lt;ul class="actions"&gt;
+                                    &lt;li&gt;&lt;input type="submit" value="Cadastrar" class="primary" /&gt;&lt;/li&gt;
+                                &lt;/ul&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/form&gt;
+                &lt;/section&gt;
+            &lt;/section&gt;
+            &lt;section id="four"&gt;
+                &lt;h2&gt;PESSOAS&lt;/h2&gt;
+                &lt;section&gt;
+                    &lt;div class="table-wrapper"&gt;
+                        &lt;table class="alt"&gt;&lt;hr&gt;
+                            &lt;thead&gt;
+                                &lt;tr&gt;
+                                    &lt;th&gt;nome&lt;/th&gt;
+                                    &lt;th&gt;profissão&lt;/th&gt;
+                                    &lt;th&gt;email&lt;/th&gt;
+                                    &lt;th&gt;cidade&lt;/th&gt;
+                                    &lt;th&gt;idade&lt;/th&gt;
+                                    &lt;th&gt;telefone&lt;/th&gt;
+                                &lt;/tr&gt;
+                            &lt;/thead&gt;
+                            &lt;tbody id="lista_pessoas"&gt;
+                            &lt;/tbody&gt;
+                        &lt;/table&gt;
+                    &lt;/div&gt;
+                &lt;/section&gt;
+            &lt;/section&gt;
+        &lt;/div&gt;
+        &lt;script type="text/javascript" src="source/jquery-3.5.1.min.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="source/jquery.form.min.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="source/jquery.mask.min.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="js/bootstrap.min.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="source/jquery-dateformat.min.js"&gt;&lt;/script&gt;
+        &lt;script src="../assets/js/jquery.poptrox.min.js"&gt;&lt;/script&gt;
+        &lt;script src="../assets/js/browser.min.js"&gt;&lt;/script&gt;
+        &lt;script src="../assets/js/breakpoints.min.js"&gt;&lt;/script&gt;
+        &lt;script src="../assets/js/util.js"&gt;&lt;/script&gt;
+        &lt;script src="../assets/js/main.js"&gt;&lt;/script&gt;
+        &lt;script src="source/script.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;                           
+                        </code>
                     </pre>
                     <h4>CSS</h4>
                     <pre id="code_css">
@@ -72,14 +197,6 @@
         <script src="../assets/js/main.js"></script>
 
         <script>
-
-            $.ajax({
-                url: "example.html",
-                dataType: "text",
-                success: function (data) {
-                    $("#code_html code").html(data.replace("<", "&lt;").replace(">", "&gt;"));
-                }
-            });
             
             $.ajax({
                 url: "../assets/css/main.css",
